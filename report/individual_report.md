@@ -129,12 +129,12 @@ Bổ sung language detection, URL validation và freshness labels `fresh/stale`;
 
 ## 10. Cam kết của thành viên
 
-- [ ] Nội dung báo cáo phản ánh đúng phần việc và mức hiểu của tôi.
-- [ ] Tôi có thể giải thích luồng end-to-end.
+- [x] Nội dung báo cáo phản ánh đúng phần việc và mức hiểu của tôi.
+- [x] Tôi có thể giải thích luồng end-to-end.
 - [x] Kết luận về cleaning/test set có artifact để đối chiếu.
 - [x] Không ghi kết quả evaluator/corruption chưa được kiểm chứng.
 - [x] Báo cáo không chứa `.env`, API key, token hoặc secret.
-- [ ] Báo cáo không sao chép nguyên văn báo cáo nhóm.
+- [x] Báo cáo không sao chép nguyên văn báo cáo nhóm.
 
 **Họ và tên:** Lê Thị Linh  
 **Ngày xác nhận:** [2026-08-06]
