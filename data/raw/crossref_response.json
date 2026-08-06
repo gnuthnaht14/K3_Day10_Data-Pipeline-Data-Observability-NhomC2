@@ -1,0 +1,824 @@
+{
+  "status": "ok",
+  "message-type": "work-list",
+  "message-version": "1.0.0",
+  "message": {
+    "facets": {},
+    "total-results": 100916,
+    "items": [
+      {
+        "indexed": {
+          "date-parts": [
+            [
+              2026,
+              6,
+              17
+            ]
+          ],
+          "date-time": "2026-06-17T08:52:47Z",
+          "timestamp": 1781686367631,
+          "version": "3.54.5"
+        },
+        "reference-count": 3,
+        "publisher": "Publishing house Pegas",
+        "issue": "7",
+        "content-domain": {
+          "domain": [],
+          "crossmark-restriction": false
+        },
+        "abstract": "<jats:p>В статье проведено исследование особенностей снижения рисков применения LLM (Large Language Model)  в сфере экономической безопасности предприятий молочной промышленности на основе подхода RAG (Retrieval-Augmented Generation) в современных  условиях. Рассмотрены риски применения LLM в сфере экономической безопасности предприятий молочной промышленности. Подробно разобраны сценарии применения LLM+RAG в российской молочной промышленности – с описанием процесса, задействованных данных, решаемых рисков и достигнутых результатов. Показано, что в результате интеграция RAG с LLM трансформирует генеративную модель из потенциально опасного инструмента в надежный механизм поддержки принятия решений – от мониторинга угроз фальсификации до прогнозирования экономических показателей с учетом отраслевой специфики.</jats:p>\n                  <jats:p>The article examines the features of reducing the risks of using LLM (Large Language Model)  in the field of economic security of dairy industry enterprises based on the RAG (Retrieval-Augmented Generation) approach in modern conditions. The risks of using LLM in the field of economic security of dairy industry enterprises are considered. The scenarios of LLM+RAG application in the Russian dairy industry are analyzed in detail, describing the process, the data involved, the risks to be solved and the results achieved. It is shown that as a result, the integration of RAG with LLM transforms the generative model from a potentially dangerous tool into a reliable decision support mechanism, from monitoring fraud threats to forecasting economic indicators based on industry specifics.</jats:p>",
+        "DOI": "10.47576/2949-1894.2026.7.7.023",
+        "type": "journal-article",
+        "created": {
+          "date-parts": [
+            [
+              2026,
+              6,
+              17
+            ]
+          ],
+          "date-time": "2026-06-17T07:51:54Z",
+          "timestamp": 1781682714000
+        },
+        "page": "192-201",
+        "source": "Crossref",
+        "is-referenced-by-count": 0,
+        "title": [
+          "Снижение рисков применения LLM (Large Language Model) в сфере экономической безопасности предприятий молочной промышленности на основе подхода RAG (Retrieval-Augmented Generation)"
+        ],
+        "prefix": "10.47576",
+        "author": [
+          {
+            "given": "И.В.",
+            "family": "Ермаков",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "Институт экономических региональных исследований"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "В.В.",
+            "family": "Филатов",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "Российский государственный аграрный университет МСХА имени К. А. Тимирязева; Московский технический университет связи и информатики; Экспертно-аналитический центр"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "member": "27371",
+        "published-online": {
+          "date-parts": [
+            [
+              2026,
+              6,
+              15
+            ]
+          ]
+        },
+        "reference": [
+          {
+            "key": "1",
+            "unstructured": "Свидетельство о государственной регистрации программы для ЭВМ № 2026614754 РФ. «Программный комплекс для автоматической генерации баз знаний, подготовки данных к загрузке в графовые хранилища, построения предметно-ориентированных онтологий и внедрения систем интеллектуального анализа и поддержки принятия решений в проектах цифровой трансформации» : заявл. 10.02.2026 : опубл. 17.02.2026 / И. В. Ермаков, А. Л. Золкин, Л. А. Каргина [и др.]."
+          },
+          {
+            "key": "2",
+            "unstructured": "Свидетельство о государственной регистрации программы для ЭВМ № 2025693835 РФ. Платформа цифрового комплаенса и аудита правовых рисков в корпоративных бизнес-процессах и подконтрольных процедурах : заявл. 25.11.2025 : опубл. 02.12.2025 / И. В. Ермаков, В. В. Филатов, А. Л. Золкин [и др.]."
+          },
+          {
+            "key": "3",
+            "unstructured": "Свидетельство о государственной регистрации программы для ЭВМ № 2025694648 РФ. Система аудита регуляторных рисков в финансовых и корпоративных процессах : заявл. 25.11.2025 : опубл. 08.12.2025 / И. В. Ермаков, В. В. Филатов, А. Л. Золкин, Р. Я. Вакуленко."
+          }
+        ],
+        "container-title": [
+          "Innovative economy: information, analytics, forecasts"
+        ],
+        "language": "ru",
+        "deposited": {
+          "date-parts": [
+            [
+              2026,
+              6,
+              17
+            ]
+          ],
+          "date-time": "2026-06-17T08:00:36Z",
+          "timestamp": 1781683236000
+        },
+        "score": 39.928844,
+        "resource": {
+          "primary": {
+            "URL": "https://ieiap.ru/journal"
+          }
+        },
+        "subtitle": [
+          "Reducing the risks of using LLM (Large Language Model) in the field of economic security of dairy enterprises based on the RAG (Retrieval-Augmented Generation) approach"
+        ],
+        "issued": {
+          "date-parts": [
+            [
+              2026,
+              6,
+              15
+            ]
+          ]
+        },
+        "references-count": 3,
+        "journal-issue": {
+          "issue": "7",
+          "published-online": {
+            "date-parts": [
+              [
+                2026,
+                6,
+                15
+              ]
+            ]
+          }
+        },
+        "URL": "https://doi.org/10.47576/2949-1894.2026.7.7.023",
+        "ISSN": [
+          "2949-1894"
+        ],
+        "issn-type": [
+          {
+            "value": "2949-1894",
+            "type": "electronic"
+          }
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2026,
+              6,
+              15
+            ]
+          ]
+        }
+      },
+      {
+        "indexed": {
+          "date-parts": [
+            [
+              2026,
+              6,
+              12
+            ]
+          ],
+          "date-time": "2026-06-12T17:00:30Z",
+          "timestamp": 1781283630303,
+          "version": "3.54.1"
+        },
+        "posted": {
+          "date-parts": [
+            [
+              2026,
+              3,
+              5
+            ]
+          ]
+        },
+        "reference-count": 0,
+        "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+        "license": [
+          {
+            "start": {
+              "date-parts": [
+                [
+                  2026,
+                  3,
+                  5
+                ]
+              ],
+              "date-time": "2026-03-05T00:00:00Z",
+              "timestamp": 1772668800000
+            },
+            "content-version": "unspecified",
+            "delay-in-days": 0,
+            "URL": "https://creativecommons.org/licenses/by/4.0/"
+          }
+        ],
+        "content-domain": {
+          "domain": [],
+          "crossmark-restriction": false
+        },
+        "abstract": "<jats:p>Retrieval-Augmented Generation (RAG) has emerged as a powerful paradigm for combining large language models with external knowledge sources to produce accurate, context-aware, and verifiable outputs. In this survey, we focus on an advanced instantiation of this paradigm, referred to as Deep RAG, which integrates reasoning, memory, and multi-step planning into end-to-end research workflows. We provide a structured overview of Deep RAG systems, covering key components such as query planning, information retrieval, memory management, and answer generation, as well as practical optimization techniques including supervised fine-tuning, iterative self-evolving, and agentic reinforcement learning. We analyze different planning strategies, adaptive retrieval mechanisms, conflict resolution methods, and multimodal synthesis, highlighting both their strengths and limitations. By categorizing approaches according to workflow types, reasoning strategies, and optimization paradigms, we clarify the current landscape and identify open challenges for evaluation, scalability, and multimodal reasoning. This survey aims to provide a comprehensive roadmap for designing flexible, reliable, and intelligent Deep RAG systems capable of performing complex, real-world research tasks with minimal human supervision.</jats:p>",
+        "DOI": "10.36227/techrxiv.177272838.89432844/v1",
+        "type": "posted-content",
+        "created": {
+          "date-parts": [
+            [
+              2026,
+              3,
+              5
+            ]
+          ],
+          "date-time": "2026-03-05T16:33:10Z",
+          "timestamp": 1772728390000
+        },
+        "source": "Crossref",
+        "is-referenced-by-count": 0,
+        "title": [
+          "A Survey of (Deep RAG) Deep Retrieval Augmented Generation and Reasoning in Large Language Models"
+        ],
+        "prefix": "10.36227",
+        "author": [
+          {
+            "ORCID": "https://orcid.org/0000-0002-3758-4041",
+            "authenticated-orcid": false,
+            "given": "Lihui",
+            "family": "Liu",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "Wayne State University"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "member": "263",
+        "link": [
+          {
+            "URL": "https://www.techrxiv.org/doi/pdf/10.36227/techrxiv.177272838.89432844/v1",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "deposited": {
+          "date-parts": [
+            [
+              2026,
+              6,
+              12
+            ]
+          ],
+          "date-time": "2026-06-12T16:31:45Z",
+          "timestamp": 1781281905000
+        },
+        "score": 38.166096,
+        "resource": {
+          "primary": {
+            "URL": "https://www.techrxiv.org/doi/full/10.36227/techrxiv.177272838.89432844/v1"
+          }
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2026,
+              3,
+              5
+            ]
+          ]
+        },
+        "references-count": 0,
+        "URL": "https://doi.org/10.36227/techrxiv.177272838.89432844/v1",
+        "published": {
+          "date-parts": [
+            [
+              2026,
+              3,
+              5
+            ]
+          ]
+        },
+        "subtype": "preprint"
+      },
+      {
+        "indexed": {
+          "date-parts": [
+            [
+              2026,
+              7,
+              17
+            ]
+          ],
+          "date-time": "2026-07-17T02:04:13Z",
+          "timestamp": 1784253853084,
+          "version": "3.55.0"
+        },
+        "reference-count": 0,
+        "publisher": "Institute of Advanced Technology and Green Innovation LLC",
+        "license": [
+          {
+            "start": {
+              "date-parts": [
+                [
+                  2026,
+                  6,
+                  30
+                ]
+              ],
+              "date-time": "2026-06-30T00:00:00Z",
+              "timestamp": 1782777600000
+            },
+            "content-version": "unspecified",
+            "delay-in-days": 0,
+            "URL": "https://creativecommons.org/licenses/by/4.0"
+          }
+        ],
+        "content-domain": {
+          "domain": [],
+          "crossmark-restriction": false
+        },
+        "short-container-title": [
+          "JAIAA"
+        ],
+        "abstract": "<jats:p>The rapid evolution of large language models (LLMs) has catalyzed a shift from passive AI systems toward autonomous agentic architectures capable of reasoning, memory, tool use, and multi-agent collaboration. This bibliometric review characterizes the emerging field through 810 publications retrieved from the Web of Science Core Collection for the period 2023–2025. Annual output rose sharply over this window—from 4 publications in 2023 to 96 in 2024 and 710 in 2025—accompanied by a parallel rise in citations, indicating rapid mainstream adoption. Author-keyword analysis reveals a landscape dominated by large language models, artificial intelligence, and multi-agent systems, with agentic AI, generative AI, and retrieval-augmented generation (RAG) emerging as core themes. Research output is geographically concentrated, led by China and the United States, and is distributed across a broad range of engineering, applied-science, and domain-specific journals rather than a single specialist venue, reflecting the field's cross-disciplinary uptake. Synthesizing this corpus, we organize the technical landscape around reasoning, memory, tool integration and RAG, and multi-agent orchestration; survey application domains spanning healthcare, scientific discovery, education, and software engineering, with emerging activity in finance and law; and analyze the principal challenges—hallucination, trust and robustness, inter-agent coordination, scalability, and governance. The review provides a structured, evidence-based map of agentic AI research to orient researchers and practitioners navigating this rapidly evolving field.</jats:p>",
+        "DOI": "10.63646/kpqm1958",
+        "type": "journal-article",
+        "created": {
+          "date-parts": [
+            [
+              2026,
+              7,
+              17
+            ]
+          ],
+          "date-time": "2026-07-17T01:44:04Z",
+          "timestamp": 1784252644000
+        },
+        "page": "32-46",
+        "source": "Crossref",
+        "is-referenced-by-count": 0,
+        "title": [
+          "The Age of Autonomous Agents: A Bibliometric Review of Agentic AI Architectures, Applications, and Emerging Challenges"
+        ],
+        "prefix": "10.63646",
+        "author": [
+          {
+            "given": "Ben",
+            "family": "J. Weber",
+            "sequence": "first",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Clara",
+            "family": "M. Hofmann",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Amara",
+            "family": "N. Okoye",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "member": "53035",
+        "published-online": {
+          "date-parts": [
+            [
+              2026,
+              6,
+              30
+            ]
+          ]
+        },
+        "container-title": [
+          "Journal of AI Analytics and Applications"
+        ],
+        "link": [
+          {
+            "URL": "https://inatgi.net/index.php/jaiaa/article/download/806/945",
+            "content-type": "application/pdf",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://inatgi.net/index.php/jaiaa/article/download/806/945",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "deposited": {
+          "date-parts": [
+            [
+              2026,
+              7,
+              17
+            ]
+          ],
+          "date-time": "2026-07-17T01:44:05Z",
+          "timestamp": 1784252645000
+        },
+        "score": 37.59059,
+        "resource": {
+          "primary": {
+            "URL": "https://inatgi.net/index.php/jaiaa/article/view/806"
+          }
+        },
+        "subtitle": [
+          "Large Language Models, Agentic AI, Multi-Agent Systems, AI Agents, Generative AI, Retrieval-Augmented Generation, Bibliometric Analysis"
+        ],
+        "issued": {
+          "date-parts": [
+            [
+              2026,
+              6,
+              30
+            ]
+          ]
+        },
+        "references-count": 0,
+        "URL": "https://doi.org/10.63646/kpqm1958",
+        "ISSN": [
+          "3067-7386"
+        ],
+        "issn-type": [
+          {
+            "value": "3067-7386",
+            "type": "electronic"
+          }
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2026,
+              6,
+              30
+            ]
+          ]
+        }
+      },
+      {
+        "indexed": {
+          "date-parts": [
+            [
+              2026,
+              7,
+              30
+            ]
+          ],
+          "date-time": "2026-07-30T14:22:32Z",
+          "timestamp": 1785421352461,
+          "version": "3.56.0"
+        },
+        "posted": {
+          "date-parts": [
+            [
+              2026,
+              4,
+              6
+            ]
+          ]
+        },
+        "group-title": "Computer Science and Mathematics",
+        "reference-count": 0,
+        "publisher": "MDPI AG",
+        "license": [
+          {
+            "start": {
+              "date-parts": [
+                [
+                  2026,
+                  4,
+                  6
+                ]
+              ],
+              "date-time": "2026-04-06T00:00:00Z",
+              "timestamp": 1775433600000
+            },
+            "content-version": "unspecified",
+            "delay-in-days": 0,
+            "URL": "http://creativecommons.org/licenses/by/4.0"
+          }
+        ],
+        "content-domain": {
+          "domain": [],
+          "crossmark-restriction": false
+        },
+        "accepted": {
+          "date-parts": [
+            [
+              2026,
+              4,
+              3
+            ]
+          ]
+        },
+        "abstract": "<jats:p>This study investigates a method that integrates retrieval-augmented mechanisms into large language model agents for scientific literature review generation. The approach addresses the limitations of traditional review models that rely on parametric knowledge with insufficient timeliness and limited coverage. Incorporating external document retrieval and dynamic information fusion into the generation process enhances the accuracy and completeness of the output. The overall framework consists of query encoding, semantic retrieval, document filtering, knowledge fusion, language modeling, task planning, memory storage, and reinforcement optimization, forming a closed loop of retrieval, understanding, and generation. Relevant document fragments are first retrieved through semantic vector search to ensure comprehensive and reliable information sources. These external representations are then integrated with the internal embeddings of the language model through weighted fusion, which preserves fluency while maintaining factual grounding. The task planning module constrains logical flow and text structure, and reinforcement learning optimization further improves relevance and consistency. Comparative experiments on large-scale scientific literature datasets demonstrate that the method outperforms existing approaches on ROUGE, BLEU, METEOR, and diversity metrics, validating its effectiveness and practicality. The findings show that combining retrieval augmentation with agent architectures can significantly improve coverage, accuracy, and language quality in review generation, providing a feasible solution for knowledge organization in complex literature environments.</jats:p>",
+        "DOI": "10.20944/preprints202604.0339.v1",
+        "type": "posted-content",
+        "created": {
+          "date-parts": [
+            [
+              2026,
+              4,
+              7
+            ]
+          ],
+          "date-time": "2026-04-07T00:32:22Z",
+          "timestamp": 1775521942000
+        },
+        "source": "Crossref",
+        "is-referenced-by-count": 4,
+        "title": [
+          "Retrieval-Augmented Large Language Model Agents for Automated Scientific Literature Review Generation"
+        ],
+        "prefix": "10.20944",
+        "author": [
+          {
+            "given": "Ruotong",
+            "family": "Wang",
+            "sequence": "first",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Nyutian",
+            "family": "Long",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Shunqi",
+            "family": "Liu",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Yuxi",
+            "family": "Wang",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Zhen",
+            "family": "Qi",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Huajun",
+            "family": "Zhang",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "member": "1968",
+        "deposited": {
+          "date-parts": [
+            [
+              2026,
+              4,
+              7
+            ]
+          ],
+          "date-time": "2026-04-07T00:32:52Z",
+          "timestamp": 1775521972000
+        },
+        "score": 37.503372,
+        "resource": {
+          "primary": {
+            "URL": "https://www.preprints.org/manuscript/202604.0339/v1"
+          }
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2026,
+              4,
+              6
+            ]
+          ]
+        },
+        "references-count": 0,
+        "URL": "https://doi.org/10.20944/preprints202604.0339.v1",
+        "published": {
+          "date-parts": [
+            [
+              2026,
+              4,
+              6
+            ]
+          ]
+        },
+        "subtype": "preprint"
+      },
+      {
+        "indexed": {
+          "date-parts": [
+            [
+              2026,
+              5,
+              6
+            ]
+          ],
+          "date-time": "2026-05-06T17:13:30Z",
+          "timestamp": 1778087610972,
+          "version": "3.51.4"
+        },
+        "reference-count": 0,
+        "publisher": "Edtech Publishers (OPC) Private Limited",
+        "issue": "05",
+        "content-domain": {
+          "domain": [],
+          "crossmark-restriction": false
+        },
+        "short-container-title": [
+          "ISJEM"
+        ],
+        "abstract": "<jats:p>Abstract - This work focuses on the two crucial bottlenecks in Retrieval-Augmented Generation (RAG): high inference latency and expensive computation cost. RAG enhances the factual correctness of Large Language Models (LLMs) by utilizing external knowledge sources; However, the auto-To achieve a good recall, the system applies a two-way retrieval mechanism:\n\nDense retrieval: This module uses BAAI/bge-small-en-v1.5 to create a 384-dimensional embedding space, where queries and documents are mapped. The embeddings are stored in a FAISS IndexFlatL2.\nSparse retrieval: This module uses TF-IDF vectorization to capture an exact keyword match.\nReranking: A simple heuristic mechanism of matching substrings of the query terms in the documents selected to perform the final step of ranking them for prompt\n\nintroduce a novel speculative RAG framework that combines hybrid retrieval with speculative decoding. Our framework employs hybrid dense vector search (BGE-small) and sparse keyword search (TF-IDF) for enhanced recall followed by a lightweight re-ranker model. A compact draft model (TinyLlama-1.1B) makes tentative future token generation, then a larger verifier model (Mistral-7B) checks the correctness of the candidate token. Empirical experiments demonstrate 33% and 29% improvement in inference latency and token reduction, respectively, compared to the baseline of a typical 7B model, while retaining 94% accuracy on factoid tasks.\n\nKey Words: Retrieval-Augmented Generation, Speculative Decoding, Large Language Models, Inference Optimization, Hybrid Retrieval</jats:p>",
+        "DOI": "10.55041/isjem07213",
+        "type": "journal-article",
+        "created": {
+          "date-parts": [
+            [
+              2026,
+              5,
+              6
+            ]
+          ],
+          "date-time": "2026-05-06T16:40:09Z",
+          "timestamp": 1778085609000
+        },
+        "page": "1-2",
+        "source": "Crossref",
+        "is-referenced-by-count": 0,
+        "title": [
+          "Speculative Retrieval-Augmented Generation for Cost-Efficient Large Language Model Inference"
+        ],
+        "prefix": "10.55041",
+        "volume": "05",
+        "author": [
+          {
+            "given": "Dr. Sumalatha",
+            "family": "P",
+            "sequence": "first",
+            "affiliation": [],
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ]
+          },
+          {
+            "given": "Manoj",
+            "family": "Kumar",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ]
+          }
+        ],
+        "member": "33635",
+        "published-online": {
+          "date-parts": [
+            [
+              2026,
+              5,
+              6
+            ]
+          ]
+        },
+        "container-title": [
+          "International Scientific Journal of Engineering and Management"
+        ],
+        "deposited": {
+          "date-parts": [
+            [
+              2026,
+              5,
+              6
+            ]
+          ],
+          "date-time": "2026-05-06T16:40:10Z",
+          "timestamp": 1778085610000
+        },
+        "score": 36.663254,
+        "resource": {
+          "primary": {
+            "URL": "https://isjem.com/download/speculative-retrieval-augmented-generation-for-cost-efficient-large-language-model-inference/"
+          }
+        },
+        "issued": {
+          "date-parts": [
+            [
+              2026,
+              5,
+              6
+            ]
+          ]
+        },
+        "references-count": 0,
+        "journal-issue": {
+          "issue": "05",
+          "published-online": {
+            "date-parts": [
+              [
+                2026,
+                5,
+                6
+              ]
+            ]
+          }
+        },
+        "URL": "https://doi.org/10.55041/isjem07213",
+        "ISSN": [
+          "2583-6129"
+        ],
+        "issn-type": [
+          {
+            "value": "2583-6129",
+            "type": "electronic"
+          }
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2026,
+              5,
+              6
+            ]
+          ]
+        }
+      }
+    ],
+    "items-per-page": 5,
+    "query": {
+      "start-index": 0,
+      "search-terms": "agentic retrieval augmented generation large language model"
+    }
+  }
+}

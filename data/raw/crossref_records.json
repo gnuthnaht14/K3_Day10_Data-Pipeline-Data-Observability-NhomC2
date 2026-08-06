@@ -1,0 +1,86 @@
+[
+  {
+    "paper_id": "10.47576/2949-1894.2026.7.7.023",
+    "title": "Снижение рисков применения LLM (Large Language Model) в сфере экономической безопасности предприятий молочной промышленности на основе подхода RAG (Retrieval-Augmented Generation)",
+    "summary": "<jats:p>В статье проведено исследование особенностей снижения рисков применения LLM (Large Language Model)  в сфере экономической безопасности предприятий молочной промышленности на основе подхода RAG (Retrieval-Augmented Generation) в современных  условиях. Рассмотрены риски применения LLM в сфере экономической безопасности предприятий молочной промышленности. Подробно разобраны сценарии применения LLM+RAG в российской молочной промышленности – с описанием процесса, задействованных данных, решаемых рисков и достигнутых результатов. Показано, что в результате интеграция RAG с LLM трансформирует генеративную модель из потенциально опасного инструмента в надежный механизм поддержки принятия решений – от мониторинга угроз фальсификации до прогнозирования экономических показателей с учетом отраслевой специфики.</jats:p>\n                  <jats:p>The article examines the features of reducing the risks of using LLM (Large Language Model)  in the field of economic security of dairy industry enterprises based on the RAG (Retrieval-Augmented Generation) approach in modern conditions. The risks of using LLM in the field of economic security of dairy industry enterprises are considered. The scenarios of LLM+RAG application in the Russian dairy industry are analyzed in detail, describing the process, the data involved, the risks to be solved and the results achieved. It is shown that as a result, the integration of RAG with LLM transforms the generative model from a potentially dangerous tool into a reliable decision support mechanism, from monitoring fraud threats to forecasting economic indicators based on industry specifics.</jats:p>",
+    "authors": [
+      "И.В. Ермаков",
+      "В.В. Филатов"
+    ],
+    "categories": [],
+    "primary_category": "",
+    "published": "2026-06-15",
+    "updated": "2026-06-17T08:52:47Z",
+    "abs_url": "https://doi.org/10.47576/2949-1894.2026.7.7.023",
+    "pdf_url": "",
+    "comment": "Innovative economy: information, analytics, forecasts"
+  },
+  {
+    "paper_id": "10.36227/techrxiv.177272838.89432844/v1",
+    "title": "A Survey of (Deep RAG) Deep Retrieval Augmented Generation and Reasoning in Large Language Models",
+    "summary": "<jats:p>Retrieval-Augmented Generation (RAG) has emerged as a powerful paradigm for combining large language models with external knowledge sources to produce accurate, context-aware, and verifiable outputs. In this survey, we focus on an advanced instantiation of this paradigm, referred to as Deep RAG, which integrates reasoning, memory, and multi-step planning into end-to-end research workflows. We provide a structured overview of Deep RAG systems, covering key components such as query planning, information retrieval, memory management, and answer generation, as well as practical optimization techniques including supervised fine-tuning, iterative self-evolving, and agentic reinforcement learning. We analyze different planning strategies, adaptive retrieval mechanisms, conflict resolution methods, and multimodal synthesis, highlighting both their strengths and limitations. By categorizing approaches according to workflow types, reasoning strategies, and optimization paradigms, we clarify the current landscape and identify open challenges for evaluation, scalability, and multimodal reasoning. This survey aims to provide a comprehensive roadmap for designing flexible, reliable, and intelligent Deep RAG systems capable of performing complex, real-world research tasks with minimal human supervision.</jats:p>",
+    "authors": [
+      "Lihui Liu"
+    ],
+    "categories": [],
+    "primary_category": "",
+    "published": "2026-03-05",
+    "updated": "2026-06-12T17:00:30Z",
+    "abs_url": "https://doi.org/10.36227/techrxiv.177272838.89432844/v1",
+    "pdf_url": "",
+    "comment": ""
+  },
+  {
+    "paper_id": "10.63646/kpqm1958",
+    "title": "The Age of Autonomous Agents: A Bibliometric Review of Agentic AI Architectures, Applications, and Emerging Challenges",
+    "summary": "<jats:p>The rapid evolution of large language models (LLMs) has catalyzed a shift from passive AI systems toward autonomous agentic architectures capable of reasoning, memory, tool use, and multi-agent collaboration. This bibliometric review characterizes the emerging field through 810 publications retrieved from the Web of Science Core Collection for the period 2023–2025. Annual output rose sharply over this window—from 4 publications in 2023 to 96 in 2024 and 710 in 2025—accompanied by a parallel rise in citations, indicating rapid mainstream adoption. Author-keyword analysis reveals a landscape dominated by large language models, artificial intelligence, and multi-agent systems, with agentic AI, generative AI, and retrieval-augmented generation (RAG) emerging as core themes. Research output is geographically concentrated, led by China and the United States, and is distributed across a broad range of engineering, applied-science, and domain-specific journals rather than a single specialist venue, reflecting the field's cross-disciplinary uptake. Synthesizing this corpus, we organize the technical landscape around reasoning, memory, tool integration and RAG, and multi-agent orchestration; survey application domains spanning healthcare, scientific discovery, education, and software engineering, with emerging activity in finance and law; and analyze the principal challenges—hallucination, trust and robustness, inter-agent coordination, scalability, and governance. The review provides a structured, evidence-based map of agentic AI research to orient researchers and practitioners navigating this rapidly evolving field.</jats:p>",
+    "authors": [
+      "Ben J. Weber",
+      "Clara M. Hofmann",
+      "Amara N. Okoye"
+    ],
+    "categories": [],
+    "primary_category": "",
+    "published": "2026-06-30",
+    "updated": "2026-07-17T02:04:13Z",
+    "abs_url": "https://doi.org/10.63646/kpqm1958",
+    "pdf_url": "https://inatgi.net/index.php/jaiaa/article/download/806/945",
+    "comment": "Journal of AI Analytics and Applications"
+  },
+  {
+    "paper_id": "10.20944/preprints202604.0339.v1",
+    "title": "Retrieval-Augmented Large Language Model Agents for Automated Scientific Literature Review Generation",
+    "summary": "<jats:p>This study investigates a method that integrates retrieval-augmented mechanisms into large language model agents for scientific literature review generation. The approach addresses the limitations of traditional review models that rely on parametric knowledge with insufficient timeliness and limited coverage. Incorporating external document retrieval and dynamic information fusion into the generation process enhances the accuracy and completeness of the output. The overall framework consists of query encoding, semantic retrieval, document filtering, knowledge fusion, language modeling, task planning, memory storage, and reinforcement optimization, forming a closed loop of retrieval, understanding, and generation. Relevant document fragments are first retrieved through semantic vector search to ensure comprehensive and reliable information sources. These external representations are then integrated with the internal embeddings of the language model through weighted fusion, which preserves fluency while maintaining factual grounding. The task planning module constrains logical flow and text structure, and reinforcement learning optimization further improves relevance and consistency. Comparative experiments on large-scale scientific literature datasets demonstrate that the method outperforms existing approaches on ROUGE, BLEU, METEOR, and diversity metrics, validating its effectiveness and practicality. The findings show that combining retrieval augmentation with agent architectures can significantly improve coverage, accuracy, and language quality in review generation, providing a feasible solution for knowledge organization in complex literature environments.</jats:p>",
+    "authors": [
+      "Ruotong Wang",
+      "Nyutian Long",
+      "Shunqi Liu",
+      "Yuxi Wang",
+      "Zhen Qi",
+      "Huajun Zhang"
+    ],
+    "categories": [],
+    "primary_category": "",
+    "published": "2026-04-06",
+    "updated": "2026-07-30T14:22:32Z",
+    "abs_url": "https://doi.org/10.20944/preprints202604.0339.v1",
+    "pdf_url": "",
+    "comment": ""
+  },
+  {
+    "paper_id": "10.55041/isjem07213",
+    "title": "Speculative Retrieval-Augmented Generation for Cost-Efficient Large Language Model Inference",
+    "summary": "<jats:p>Abstract - This work focuses on the two crucial bottlenecks in Retrieval-Augmented Generation (RAG): high inference latency and expensive computation cost. RAG enhances the factual correctness of Large Language Models (LLMs) by utilizing external knowledge sources; However, the auto-To achieve a good recall, the system applies a two-way retrieval mechanism:\n\nDense retrieval: This module uses BAAI/bge-small-en-v1.5 to create a 384-dimensional embedding space, where queries and documents are mapped. The embeddings are stored in a FAISS IndexFlatL2.\nSparse retrieval: This module uses TF-IDF vectorization to capture an exact keyword match.\nReranking: A simple heuristic mechanism of matching substrings of the query terms in the documents selected to perform the final step of ranking them for prompt\n\nintroduce a novel speculative RAG framework that combines hybrid retrieval with speculative decoding. Our framework employs hybrid dense vector search (BGE-small) and sparse keyword search (TF-IDF) for enhanced recall followed by a lightweight re-ranker model. A compact draft model (TinyLlama-1.1B) makes tentative future token generation, then a larger verifier model (Mistral-7B) checks the correctness of the candidate token. Empirical experiments demonstrate 33% and 29% improvement in inference latency and token reduction, respectively, compared to the baseline of a typical 7B model, while retaining 94% accuracy on factoid tasks.\n\nKey Words: Retrieval-Augmented Generation, Speculative Decoding, Large Language Models, Inference Optimization, Hybrid Retrieval</jats:p>",
+    "authors": [
+      "Dr. Sumalatha P",
+      "Manoj Kumar"
+    ],
+    "categories": [],
+    "primary_category": "",
+    "published": "2026-05-06",
+    "updated": "2026-05-06T17:13:30Z",
+    "abs_url": "https://doi.org/10.55041/isjem07213",
+    "pdf_url": "",
+    "comment": "International Scientific Journal of Engineering and Management"
+  }
+]
