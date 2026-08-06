@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from datetime import UTC, datetime
+import hashlib
 import json
 from pathlib import Path
 import re
@@ -18,6 +19,11 @@ def write_json(path: Path, payload: Any) -> None:
 
 def read_json(path: Path) -> Any:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def file_sha256(path: Path) -> str:
+    """Return a stable fingerprint used to prove that an artifact stayed frozen."""
+    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
 def write_csv(df, path: Path) -> None:

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from dataclasses import replace
 from typing import Any
 
 from langchain.agents import create_agent
@@ -8,6 +9,7 @@ from langchain.tools import tool
 from core.config import Settings
 from retrieval.index import LocalEmbeddingIndex
 from retrieval.llm import build_llm
+from retrieval.qa import AnswerResult, answer_question
 
 
 def build_agent(settings: Settings, index: LocalEmbeddingIndex):
@@ -57,3 +59,34 @@ def run_agent_question(agent: Any, question: str) -> str:
         return ""
     final_message = messages[-1]
     return getattr(final_message, "content", str(final_message))
+
+
+class TraceableAgentAnswerer:
+    """Use the tool-calling agent while preserving an independent retrieval trace."""
+
+    def __init__(self, settings: Settings, index: LocalEmbeddingIndex):
+        self.settings = settings
+        self.index = index
+        self.agent = build_agent(settings, index)
+
+    def __call__(self, question: str) -> AnswerResult:
+        # Only this independent semantic trace feeds retrieval_hit_rate.
+        trace = answer_question(question, settings=self.settings, index=self.index)
+        try:
+            answer = run_agent_question(self.agent, question).strip()
+            return replace(
+                trace,
+                answer=answer,
+                answer_source="langchain_tool_agent",
+                answer_doc_id=None,
+            )
+        except Exception as exc:
+            return replace(
+                trace,
+                answer_source=f"{trace.answer_source}_agent_fallback",
+                answerer_error=f"{type(exc).__name__}: {exc}",
+            )
+
+
+def build_agent_answerer(settings: Settings, index: LocalEmbeddingIndex) -> TraceableAgentAnswerer:
+    return TraceableAgentAnswerer(settings, index)

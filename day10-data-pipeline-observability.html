@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bài Lab số 10 — Data Pipeline & Data Observability</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin:0; height:100%; overflow:hidden; background:#10122a;
+               font-family:'Be Vietnam Pro', system-ui, sans-serif; }
+  button { font-family:inherit; cursor:pointer; border:none; }
+  button:focus-visible { outline:.4vmin solid #7c5fe6; outline-offset:.4vmin; }
+
+  #track { display:flex; height:100vh; transition:transform .5s cubic-bezier(.7,0,.2,1); }
+  @media (prefers-reduced-motion: reduce) { #track { transition:none; } }
+
+  .slide { flex:0 0 100vw; height:100vh; display:flex; flex-direction:column;
+           padding:5vmin 6.5vmin; overflow:hidden; }
+  .light { background:#f5f4fc; color:#10122a; }
+  .dark  { background:radial-gradient(120% 120% at 50% 0%,#2a1f5e 0%,#10122a 55%,#080a1a 100%);
+           color:#e8e6fb; }
+  .center { align-items:center; justify-content:center; text-align:center; }
+
+  /* typography */
+  .eyebrow { font-size:2.3vmin; letter-spacing:.42em; text-transform:uppercase;
+             color:#7c5fe6; font-weight:700; }
+  .h1 { font-size:5.6vmin; font-weight:900; line-height:1.04; }
+  .sub { font-size:2.8vmin; font-weight:600; color:#5a5880; margin-top:1vmin; }
+  .dark .sub { color:#a89de0; }
+
+  /* header row */
+  .head { display:flex; align-items:center; gap:2vmin; flex:0 0 auto; }
+  .badge { font-size:2.1vmin; font-weight:800; letter-spacing:.2em; background:#7c5fe6;
+           color:#fff; padding:1vmin 2.2vmin; border-radius:99px; white-space:nowrap; }
+  .badge.teal   { background:#2cb8ae; }
+  .badge.orange { background:#e07c3a; }
+  .badge.grey   { background:#5a5880; }
+  .clock { margin-left:auto; font-size:2.3vmin; font-weight:800; color:#7a789a; white-space:nowrap; }
+  .who { font-size:2vmin; font-weight:800; letter-spacing:.14em; text-transform:uppercase;
+         padding:.8vmin 1.8vmin; border-radius:99px; white-space:nowrap; }
+  .who.solo { background:#ebe8fb; color:#4a2eb8; border:.3vmin solid #a89de0; }
+  .who.team { background:#e0f7f6; color:#0d7a73; border:.3vmin solid #7dd4d0; }
+
+  /* body layout */
+  .body { flex:1; min-height:0; display:flex; gap:4vmin; margin-top:2.6vmin; }
+  .main { flex:1.45; min-width:0; display:flex; flex-direction:column; gap:1.8vmin; }
+  .side { flex:0 0 31vw; display:flex; flex-direction:column; gap:1.8vmin; }
+
+  /* cards */
+  .card { background:#fff; border:.4vmin solid #d8d5f0; border-radius:2.2vmin;
+          padding:2.2vmin 2.6vmin; }
+  .card h4 { margin:0; font-size:2.5vmin; font-weight:800; color:#10122a; }
+  .card p  { margin:.6vmin 0 0; font-size:2vmin; font-weight:500; color:#5a5880; line-height:1.4; }
+  .card.purple { background:#ebe8fb; border-color:#a89de0; }
+  .card.teal   { background:#e0f7f6; border-color:#7dd4d0; }
+  .card.amber  { background:#fdf3e0; border-color:#e8b84c; }
+  .card.red    { background:#fdeaea; border-color:#e07070; }
+
+  /* list items */
+  .li { display:flex; align-items:flex-start; gap:1.6vmin; font-size:2.7vmin;
+        font-weight:600; line-height:1.35; }
+  .li b { color:#4a2eb8; }
+  .dot { color:#7c5fe6; font-weight:900; flex:0 0 auto; }
+
+  /* pill / callout */
+  .pill { display:inline-flex; align-self:flex-start; align-items:center; gap:1.3vmin;
+          background:#ebe8fb; border:.4vmin solid #7c5fe6; color:#4a2eb8;
+          font-size:2.3vmin; font-weight:700; padding:1.2vmin 2.4vmin; border-radius:99px; }
+  .pill.teal { background:#e0f7f6; border-color:#2cb8ae; color:#0d7a73; }
+  .pill.warn { background:#fdf3e0; border-color:#e8b84c; color:#7a5010; }
+
+  /* chips */
+  .chips { display:flex; flex-wrap:wrap; gap:1.1vmin; }
+  .chip { font-size:2vmin; font-weight:700; background:#fff; border:.35vmin solid #d8d5f0;
+          color:#10122a; padding:.9vmin 1.8vmin; border-radius:99px; }
+  .chip.on { background:#4a2eb8; border-color:#4a2eb8; color:#fff; }
+  .chip.teal { background:#2cb8ae; border-color:#2cb8ae; color:#fff; }
+
+  /* grids */
+  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:1.6vmin; }
+  .grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:1.8vmin; }
+
+  /* code/trace block */
+  .trace { background:#08091a; border:.4vmin solid #2a235a; border-radius:2vmin;
+           padding:2vmin 2.4vmin; }
+  .trace pre { margin:0; font-size:1.85vmin; line-height:1.65; color:#c4b8ff;
+               font-weight:600; white-space:pre-wrap; font-family:'Courier New',monospace; }
+  .trace .tcmd { color:#7ee8fa; }
+  .trace .tkey { color:#f9c74f; }
+  .trace .tval { color:#90be6d; }
+  .trace .tcom { color:#6c6a8a; }
+
+  /* timer */
+  .timer { display:flex; flex-direction:column; align-items:center; background:#fff;
+           border:.5vmin solid #d8d5f0; border-radius:3vmin; padding:2.6vmin 2vmin;
+           box-shadow:0 3vmin 6vmin rgba(10,8,40,.1); }
+  .dark .timer { background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.18); box-shadow:none; }
+  .t-label { font-size:1.9vmin; letter-spacing:.3em; text-transform:uppercase;
+             color:#7a789a; font-weight:700; }
+  .t-num { font-size:17vmin; font-weight:900; line-height:.92; font-variant-numeric:tabular-nums;
+           color:#10122a; margin:.4vmin 0; }
+  .dark .t-num { color:#e8e6fb; }
+  .t-num.warn { color:#c62f2f; }
+  .t-btns { display:flex; gap:1.5vmin; margin-top:1.6vmin; }
+  .t-btns button { font-size:2.4vmin; font-weight:800; padding:1.3vmin 3.2vmin; border-radius:99px; }
+  .t-start { background:#7c5fe6; color:#fff; }
+  .t-reset { background:#e9e8f6; color:#5a5880; }
+
+  /* phase grid */
+  .phase-box { border-radius:1.8vmin; padding:1.8vmin 1.4vmin; text-align:center; }
+  .phase-lbl { font-size:1.8vmin; font-weight:800; letter-spacing:.16em; }
+  .phase-name { font-size:2.4vmin; font-weight:800; margin-top:.6vmin; }
+  .phase-time { font-size:1.9vmin; font-weight:700; color:#7a789a; margin-top:.4vmin; }
+  .phase-purple { background:#ebe8fb; border:.4vmin solid #a89de0; }
+  .phase-purple .phase-lbl { color:#4a2eb8; }
+  .phase-teal  { background:#e0f7f6; border:.4vmin solid #7dd4d0; }
+  .phase-teal  .phase-lbl { color:#0d7a73; }
+  .phase-break { background:#f2f3f0; border:.4vmin dashed #b9b5d8; }
+  .phase-break .phase-lbl { color:#7a789a; }
+  .phase-name.break-name { color:#5a5880; }
+
+  /* step row */
+  .step-row { display:flex; align-items:center; gap:3vmin;
+              border-top:.3vmin solid #d8d5f0; padding:2.2vmin .5vmin; }
+  .step-row:last-child { border-bottom:.3vmin solid #d8d5f0; }
+  .num-accent { font-size:4.4vmin; font-weight:900; color:#7c5fe6; min-width:8vmin; }
+
+  /* pipeline arrow diagram */
+  .pipe { display:flex; align-items:center; gap:.8vmin; flex-wrap:wrap; }
+  .pipe-node { background:#ebe8fb; border:.4vmin solid #a89de0; border-radius:1.4vmin;
+               padding:.9vmin 1.6vmin; font-size:2vmin; font-weight:800; color:#4a2eb8; white-space:nowrap; }
+  .pipe-node.teal { background:#e0f7f6; border-color:#7dd4d0; color:#0d7a73; }
+  .pipe-node.amber { background:#fdf3e0; border-color:#e8b84c; color:#7a5010; }
+  .pipe-node.red { background:#fdeaea; border-color:#e07070; color:#8a1a1a; }
+  .pipe-arrow { color:#7c5fe6; font-size:2.4vmin; font-weight:900; }
+
+  /* nav */
+  .nav { position:fixed; top:50%; transform:translateY(-50%); width:6vmin; height:9vmin;
+         border-radius:1.5vmin; background:transparent; color:#7c5fe6; font-size:4vmin;
+         font-weight:800; display:flex; align-items:center; justify-content:center;
+         opacity:.08; z-index:20; transition:opacity .2s, background .2s, color .2s; }
+  .nav:hover, .nav:focus-visible {
+         opacity:1; background:rgba(10,8,40,.88); color:#fff; }
+  .nav.p { left:.4vmin; } .nav.n { right:.4vmin; }
+
+  /* dots */
+  #dots { position:fixed; bottom:2.2vmin; left:50%; transform:translateX(-50%);
+          display:flex; gap:1.1vmin; align-items:center; z-index:20; }
+  #dots button { height:1.3vmin; width:1.3vmin; border-radius:99px;
+                 background:rgba(255,255,255,.4); transition:all .3s; padding:0; }
+  #dots button.on { width:4.5vmin; background:#7c5fe6; }
+  .light #dots button { background:rgba(10,8,40,.2); }
+</style>
+</head>
+<body>
+
+<div id="track">
+
+  <!-- 1 — MỞ ĐẦU -->
+  <section class="slide dark center">
+    <div class="eyebrow" style="margin-bottom:3vmin;">Khởi động buổi học</div>
+    <div style="font-size:14vmin;font-weight:900;line-height:.98;">BÀI LAB SỐ 10</div>
+    <div style="width:16vmin;height:.7vmin;background:#7c5fe6;border-radius:99px;margin:5vmin 0;"></div>
+    <div style="font-size:4.2vmin;font-weight:500;color:#a89de0;">
+      Chủ đề: <b style="color:#fff;font-weight:800;">Data Pipeline & Data Observability</b>
+    </div>
+    <div style="font-size:2.8vmin;font-weight:600;color:#6a68a0;margin-top:3vmin;letter-spacing:.05em;">
+      Build it, observe it, break it, fix it — with evidence.
+    </div>
+  </section>
+
+  <!-- 2 — BỨC TRANH TOÀN CẢNH -->
+  <section class="slide light">
+    <div class="head">
+      <div>
+        <div class="h1">BỨC TRANH TOÀN CẢNH</div>
+        <div class="sub">3.5 giờ · nhóm 3–5 người · 6 checkpoints</div>
+      </div>
+    </div>
+    <div class="body">
+      <div class="main">
+        <div class="li"><span class="dot">•</span><span>Thu thập bài báo từ <b>Crossref API</b>, lưu raw artifact, làm sạch dữ liệu, xây dựng vector store ChromaDB và chạy RAG agent.</span></div>
+        <div class="li"><span class="dot">•</span><span>Cố định một bộ câu hỏi đánh giá (<b>Frozen Evaluation Set</b>) — dùng xuyên suốt ba trạng thái.</span></div>
+        <div class="li"><span class="dot">•</span><span>Gây lỗi dữ liệu có kiểm soát, đo sự sụt giảm chất lượng RAG, sau đó khôi phục từ raw snapshot và so sánh đối chiếu.</span></div>
+        <div style="margin-top:.6vmin;">
+          <div class="pipe">
+            <div class="pipe-node">Crossref API</div><span class="pipe-arrow">→</span>
+            <div class="pipe-node">Raw Artifacts</div><span class="pipe-arrow">→</span>
+            <div class="pipe-node teal">Clean Data</div><span class="pipe-arrow">→</span>
+            <div class="pipe-node teal">ChromaDB</div><span class="pipe-arrow">→</span>
+            <div class="pipe-node teal">Baseline</div>
+          </div>
+          <div class="pipe" style="margin-top:1vmin;">
+            <div class="pipe-node teal">Raw Backup</div><span class="pipe-arrow">→</span>
+            <div class="pipe-node amber">Corruption</div><span class="pipe-arrow">→</span>
+            <div class="pipe-node amber">Corrupted</div><span class="pipe-arrow">→</span>
+            <div class="pipe-node">Repair</div><span class="pipe-arrow">→</span>
+            <div class="pipe-node teal">Repaired</div>
+          </div>
+          <div class="pipe" style="margin-top:1vmin;">
+            <div class="pipe-node" style="background:#ebe8fb;border-color:#7c5fe6;color:#4a2eb8;">Baseline</div>
+            <span class="pipe-arrow">vs</span>
+            <div class="pipe-node amber">Corrupted</div>
+            <span class="pipe-arrow">vs</span>
+            <div class="pipe-node teal">Repaired</div>
+            <span class="pipe-arrow">→</span>
+            <div class="pipe-node" style="background:#10122a;border-color:#10122a;color:#fff;">Fair Comparison</div>
+          </div>
+        </div>
+      </div>
+      <div class="side">
+        <div class="card purple">
+          <h4>🎯 Đích đến cuối buổi</h4>
+          <p>Bằng chứng JSON/Markdown chứng minh: <b>Corruption → Sụt giảm chất lượng. Repair → Phục hồi.</b> Ba trạng thái, cùng một bộ câu hỏi.</p>
+        </div>
+        <div class="card teal">
+          <h4>📦 7 sản phẩm nộp</h4>
+          <p>Code hoàn thiện · Raw/Clean/Eval data · Metrics ba trạng thái · Quality reports · Báo cáo nhóm + báo cáo cá nhân.</p>
+        </div>
+        <div class="pill warn">⚠️ Không commit file .env hay API key lên GitHub</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 — LUỒNG BUỔI LAB -->
+  <section class="slide light">
+    <div class="head">
+      <div>
+        <div class="h1">LUỒNG BUỔI LAB</div>
+        <div class="sub">6 pha · tổng <b style="color:#7c5fe6;">210 phút</b> · xen kẽ 2 lần nghỉ</div>
+      </div>
+      <div style="margin-left:auto;display:flex;gap:1.2vmin;">
+        <span class="who solo">Cá nhân</span><span class="who team">Nhóm</span>
+      </div>
+    </div>
+    <div style="flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;gap:1.4vmin;">
+      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:1.4vmin;">
+        <div class="phase-box phase-purple">
+          <div class="phase-lbl">PHA 0</div>
+          <div class="phase-name">Setup & Starter</div>
+          <div class="phase-time">20'</div>
+        </div>
+        <div class="phase-box phase-purple">
+          <div class="phase-lbl">PHA 1</div>
+          <div class="phase-name">Phân vai & Contract</div>
+          <div class="phase-time">20'</div>
+        </div>
+        <div class="phase-box phase-teal">
+          <div class="phase-lbl">PHA 2</div>
+          <div class="phase-name">Xây dựng ETL</div>
+          <div class="phase-time">65'</div>
+        </div>
+        <div class="phase-box phase-break">
+          <div class="phase-lbl">NGHỈ</div>
+          <div class="phase-name break-name">Break</div>
+          <div class="phase-time">10'</div>
+        </div>
+        <div class="phase-box phase-teal">
+          <div class="phase-lbl">PHA 3</div>
+          <div class="phase-name">Baseline Pipeline</div>
+          <div class="phase-time">40'</div>
+        </div>
+        <div class="phase-box phase-break">
+          <div class="phase-lbl">NGHỈ</div>
+          <div class="phase-name break-name">Break</div>
+          <div class="phase-time">10'</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.4vmin;">
+        <div class="phase-box phase-purple" style="border-color:#e07c3a;background:#fbeee4;">
+          <div class="phase-lbl" style="color:#a8531f;">PHA 4</div>
+          <div class="phase-name">Corruption & Repair</div>
+          <div class="phase-time">45'</div>
+        </div>
+        <div class="phase-box phase-teal">
+          <div class="phase-lbl">PHA 5</div>
+          <div class="phase-name">Báo cáo & Nộp</div>
+          <div class="phase-time">20'</div>
+        </div>
+        <div class="phase-box phase-purple">
+          <div class="phase-lbl">BONUS</div>
+          <div class="phase-name">Demo & Chia sẻ</div>
+          <div class="phase-time">flex</div>
+        </div>
+      </div>
+    </div>
+    <div class="pill">📌 Checkpoint C2 và C3 cần được coach xác nhận trước khi chuyển pha tiếp theo</div>
+  </section>
+
+  <!-- 4 — FORK REPO & NỘP BÀI -->
+  <section class="slide light">
+    <div class="head">
+      <div>
+        <div class="h1">FORK REPO & CẤU TRÚC NỘP BÀI</div>
+        <div class="sub">Mỗi nhóm fork repo chính thức của lớp · nộp theo tên nhóm</div>
+      </div>
+    </div>
+    <div class="body">
+      <div class="main">
+        <div style="background:#ebe8fb;border:.4vmin solid #a89de0;border-radius:1.8vmin;padding:1.6vmin 2vmin;">
+          <div style="font-size:1.8vmin;font-weight:800;letter-spacing:.14em;color:#4a2eb8;">REPO CHÍNH THỨC</div>
+          <code style="display:block;font-size:2.1vmin;font-weight:800;color:#10122a;margin-top:.8vmin;line-height:1.35;">VinUni-AI20k/K3_Day10_Data-Pipeline-Data-Observability</code>
+        </div>
+        <div class="li"><span class="dot">•</span><span>Fork repo về tài khoản GitHub cá nhân → Đặt tên đúng format bên phải → bấm <b>Create fork</b></span></div>
+        <div class="li"><span class="dot">•</span><span>Clone về máy, cài đặt môi trường theo hướng dẫn trong <b>codelab</b></span></div>
+        <div style="display:flex;flex-direction:column;gap:1.2vmin;">
+          <div style="display:flex;align-items:center;gap:1.8vmin;background:#fff;border:.4vmin solid #d8d5f0;border-radius:1.8vmin;padding:1.4vmin 2.2vmin;">
+            <span class="who team">Nhóm</span>
+            <code style="font-size:2.1vmin;font-weight:800;color:#4a2eb8;">src/ · data/ · report/group_report.md</code>
+          </div>
+          <div style="display:flex;align-items:center;gap:1.8vmin;background:#fff;border:.4vmin solid #d8d5f0;border-radius:1.8vmin;padding:1.4vmin 2.2vmin;">
+            <span class="who solo">Cá nhân</span>
+            <code style="font-size:2.1vmin;font-weight:800;color:#0d7a73;">report/individual_[MSSV].md</code>
+          </div>
+        </div>
+        <div class="pill warn">⚠️ Đảm bảo file <code style="font-weight:900;">.env</code> và API key không bị push lên GitHub</div>
+      </div>
+      <div class="side">
+        <div style="background:#1a1235;color:#e8e6fb;border-radius:2.4vmin;padding:2.6vmin;">
+          <div style="font-size:1.9vmin;letter-spacing:.28em;text-transform:uppercase;color:#8a80c0;font-weight:700;">Tên thư mục nộp</div>
+          <div style="font-size:2.5vmin;font-weight:800;margin-top:1.4vmin;line-height:1.4;word-break:break-word;">KX-DAY10-[MSSV]-[HoVaTen]</div>
+          <div style="height:.3vmin;background:rgba(255,255,255,.18);margin:2vmin 0;"></div>
+          <div style="font-size:1.9vmin;color:#8a80c0;font-weight:700;">Ví dụ</div>
+          <div style="font-size:2.2vmin;font-weight:800;color:#90c8ff;margin-top:.8vmin;word-break:break-word;">K3-DAY10-20K1234-NguyenVanA</div>
+          <div style="font-size:1.9vmin;color:#a89de0;margin-top:1.6vmin;line-height:1.4;">Họ và tên viết <b style="color:#fff;">không dấu</b>, không khoảng trắng (CamelCase). X là 3 hoặc 4.</div>
+        </div>
+        <div class="pill teal" style="align-self:stretch;justify-content:center;text-align:center;">
+          📋 Nộp link repo GitHub theo hướng dẫn của Lab Coach
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 — PHA 0+1: SETUP & PHÂN VAI -->
+  <section class="slide light">
+    <div class="head">
+      <span class="badge">PHA 0 + 1</span>
+      <span class="h1">SETUP & PHÂN VAI</span>
+      <span class="who team" style="margin-left:1vmin;">Cả nhóm</span>
+      <span class="clock">40 phút</span>
+    </div>
+    <div class="body">
+      <div class="main">
+        <div class="li"><span class="dot">•</span><span>Chạy <code style="font-weight:900;color:#4a2eb8;">uv sync</code> hoặc <code style="font-weight:900;">pip install -e .</code> — <b>không</b> chỉ chạy pip install -r requirements.txt</span></div>
+        <div class="li"><span class="dot">•</span><span>Tạo file <code style="font-weight:900;color:#4a2eb8;">.env</code> từ <code style="font-weight:900;">.env.example</code>, điền API key của nhà cung cấp LLM (Gemini mặc định)</span></div>
+        <div class="li"><span class="dot">•</span><span>Chạy lệnh tìm TODO để biết phần nào cần cài đặt:</span></div>
+        <div class="trace">
+          <pre><span class="tcmd"># macOS/Linux</span>
+<span class="tkey">grep</span> -RInE <span class="tval">'TODO\(student\)|NotImplementedError'</span> src
+
+<span class="tcmd"># Windows PowerShell</span>
+<span class="tkey">Get-ChildItem</span> src -Recurse -Filter *.py |
+  <span class="tkey">Select-String</span> -Pattern <span class="tval">'TODO\(student\)|NotImplementedError'</span></pre>
+        </div>
+        <div class="li"><span class="dot">•</span><span>Sau setup: <b>phân vai nhóm</b> và thống nhất <b>data contract</b> (raw schema → clean schema → eval schema)</span></div>
+      </div>
+      <div class="side">
+        <div class="timer" data-secs="2400">
+          <div class="t-label">Thời gian</div>
+          <div class="t-num">40:00</div>
+          <div class="t-btns"><button class="t-start">START</button><button class="t-reset">RESET</button></div>
+        </div>
+        <div class="card purple">
+          <h4>✅ Checkpoint C0 + C1</h4>
+          <p><b>C0:</b> Cài đặt xong, tìm được TODO trong code.<br><b>C1:</b> Bảng phân vai trong <code>group_report.md</code> đã được điền đầy đủ.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 — PHA 2: XÂY DỰNG ETL -->
+  <section class="slide light">
+    <div class="head">
+      <span class="badge teal">PHA 2</span>
+      <span class="h1">XÂY DỰNG DATA PIPELINE</span>
+      <span class="who solo" style="margin-left:1vmin;">Mỗi người</span>
+      <span class="clock">65 phút</span>
+    </div>
+    <div class="body">
+      <div class="main">
+        <div class="grid2">
+          <div class="card purple">
+            <h4>📡 Ingestion — crossref.py</h4>
+            <p>Gọi Crossref API, retry/backoff khi 429/503. Lưu <b>hai dạng raw artifact:</b> response.json (thô) + records.json (đã parse)</p>
+          </div>
+          <div class="card teal">
+            <h4>🧹 Cleaning — cleaning.py</h4>
+            <p>Bóc thẻ XML/HTML, chuẩn hóa ngày, tính <code>age_days</code>, tạo <code>text_for_embedding</code>. Lưu CSV + JSON sạch.</p>
+          </div>
+          <div class="card teal">
+            <h4>❄️ Eval Set — testset.py</h4>
+            <p>Tạo ≥ 5 câu hỏi factual từ clean data, gắn <code>ground_truth_doc_ids</code>. <b>Đóng băng</b> bộ test → lưu <code>test_set.json</code>.</p>
+          </div>
+          <div class="card purple">
+            <h4>📊 Observability — quality.py</h4>
+            <p>Viết checks: completeness, uniqueness, freshness. Sinh file báo cáo chất lượng dữ liệu.</p>
+          </div>
+        </div>
+        <div class="pill">🔑 <code>paper_id</code> phải unique và non-null — khoá liên kết xuyên suốt 3 trạng thái</div>
+      </div>
+      <div class="side">
+        <div class="timer" data-secs="3900">
+          <div class="t-label">Thời gian</div>
+          <div class="t-num">65:00</div>
+          <div class="t-btns"><button class="t-start">START</button><button class="t-reset">RESET</button></div>
+        </div>
+        <div class="card teal">
+          <h4>✅ Checkpoint C2</h4>
+          <p><code>data/raw/</code> · <code>data/clean/</code> · <code>data/eval/test_set.json</code> — tất cả đã có, đã đúng schema.</p>
+        </div>
+        <div class="li" style="font-size:2.2vmin;"><span class="dot">•</span><span>Corruption ở bước sau phải đụng trúng ít nhất 1 doc trong bộ test frozen này</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 — BREAK 1 -->
+  <section class="slide dark center">
+    <div class="eyebrow">Sau Pha 2 — Checkpoint C2</div>
+    <div style="font-size:11vmin;font-weight:900;line-height:1;margin:2.5vmin 0 1vmin;">GIẢI LAO</div>
+    <div style="font-size:5.5vmin;font-weight:800;color:#7c5fe6;margin:1vmin 0 2vmin;">10 phút</div>
+    <div style="font-size:3vmin;font-weight:600;color:#a89de0;">Quay lại đúng giờ để chạy baseline pipeline</div>
+  </section>
+
+  <!-- 8 — PHA 3: BASELINE -->
+  <section class="slide light">
+    <div class="head">
+      <span class="badge teal">PHA 3</span>
+      <span class="h1">BASELINE PIPELINE</span>
+      <span class="who team" style="margin-left:1vmin;">Nhóm</span>
+      <span class="clock">40 phút</span>
+    </div>
+    <div class="body">
+      <div class="main">
+        <div class="li"><span class="dot">•</span><span>Chạy pipeline tích hợp: Ingestion → Cleaning → Index ChromaDB → Eval → Quality checks</span></div>
+        <div class="trace">
+          <pre><span class="tkey">uv run python</span> <span class="tval">script/run_phase1.py</span>
+<span class="tcom"># hoặc: python script/run_phase1.py</span></pre>
+        </div>
+        <div class="grid2" style="margin-top:.4vmin;">
+          <div class="card">
+            <h4>📈 RAG Metrics</h4>
+            <p><b>retrieval_hit_rate</b>: tìm kiếm trúng top-k<br><b>mean_token_f1</b>: độ khớp từ vựng câu trả lời<br><b>LLM judge</b>: chấm chất lượng tự động (nếu có key)</p>
+          </div>
+          <div class="card teal">
+            <h4>🔍 Quality Signals</h4>
+            <p><b>completeness</b>: thiếu field bắt buộc<br><b>uniqueness</b>: bản ghi trùng lặp<br><b>freshness</b>: bài báo quá cũ (age_days ngưỡng)</p>
+          </div>
+        </div>
+        <div class="pill warn">📁 Đầu ra: <code>baseline_metrics.json</code> · <code>baseline_answers.json</code> · <code>phase1_report.md</code></div>
+      </div>
+      <div class="side">
+        <div class="timer" data-secs="2400">
+          <div class="t-label">Thời gian</div>
+          <div class="t-num">40:00</div>
+          <div class="t-btns"><button class="t-start">START</button><button class="t-reset">RESET</button></div>
+        </div>
+        <div class="card purple">
+          <h4>✅ Checkpoint C3</h4>
+          <p>Tất cả quality checks <b>PASS</b>. Có file metrics baseline. Đây là mốc đối chiếu bất biến cho các bước sau.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 — BREAK 2 -->
+  <section class="slide dark center">
+    <div class="eyebrow">Sau Pha 3 — Checkpoint C3</div>
+    <div style="font-size:11vmin;font-weight:900;line-height:1;margin:2.5vmin 0 1vmin;">GIẢI LAO</div>
+    <div style="font-size:5.5vmin;font-weight:800;color:#7c5fe6;margin:1vmin 0 2vmin;">10 phút</div>
+    <div style="font-size:3vmin;font-weight:600;color:#a89de0;">Chặng cuối: gây lỗi có kiểm soát và khôi phục dữ liệu</div>
+  </section>
+
+  <!-- 10 — PHA 4: CORRUPTION & REPAIR -->
+  <section class="slide light">
+    <div class="head">
+      <span class="badge orange">PHA 4</span>
+      <span class="h1">CORRUPTION, REPAIR & SO SÁNH</span>
+      <span class="who team" style="margin-left:1vmin;">Nhóm</span>
+      <span class="clock">45 phút</span>
+    </div>
+    <div class="body">
+      <div class="main">
+        <div class="li"><span class="dot">•</span><span>Chọn ≥ 3 kịch bản lỗi trong <code style="font-weight:900;">corruption.py</code>: Blank Summary · Stale Date · Duplicates · Add Noise</span></div>
+        <div class="li"><span class="dot">•</span><span>Lưu <code style="color:#4a2eb8;font-weight:900;">papers_corrupted.csv</code> + <code style="color:#4a2eb8;font-weight:900;">corruption_log.json</code>. Re-build index. Đánh giá trên bộ test frozen.</span></div>
+        <div class="li"><span class="dot">•</span><span><b>Repair:</b> bắt đầu từ <code>data/raw/crossref_records.json</code>, chạy lại cleaning chuẩn. Re-build index. Đánh giá lại.</span></div>
+        <div style="display:flex;gap:1.4vmin;margin-top:.4vmin;">
+          <div style="flex:1;text-align:center;background:#ebe8fb;border:.4vmin solid #7c5fe6;border-radius:1.8vmin;padding:1.4vmin;">
+            <div style="font-size:2.4vmin;font-weight:900;color:#4a2eb8;">📊 Baseline</div>
+            <div style="font-size:1.8vmin;font-weight:700;color:#7a789a;">Mốc chuẩn</div>
+          </div>
+          <div style="display:flex;align-items:center;font-size:3vmin;color:#7c5fe6;font-weight:900;">→</div>
+          <div style="flex:1;text-align:center;background:#fbeee4;border:.4vmin solid #e07c3a;border-radius:1.8vmin;padding:1.4vmin;">
+            <div style="font-size:2.4vmin;font-weight:900;color:#a8531f;">💀 Corrupted</div>
+            <div style="font-size:1.8vmin;font-weight:700;color:#7a789a;">Metrics sụt giảm</div>
+          </div>
+          <div style="display:flex;align-items:center;font-size:3vmin;color:#7c5fe6;font-weight:900;">→</div>
+          <div style="flex:1;text-align:center;background:#e0f7f6;border:.4vmin solid #2cb8ae;border-radius:1.8vmin;padding:1.4vmin;">
+            <div style="font-size:2.4vmin;font-weight:900;color:#0d7a73;">✅ Repaired</div>
+            <div style="font-size:1.8vmin;font-weight:700;color:#7a789a;">Phục hồi</div>
+          </div>
+        </div>
+        <div class="trace">
+          <pre><span class="tkey">uv run python</span> <span class="tval">script/run_corruption_flow.py</span></pre>
+        </div>
+      </div>
+      <div class="side">
+        <div class="timer" data-secs="2700">
+          <div class="t-label">Thời gian</div>
+          <div class="t-num">45:00</div>
+          <div class="t-btns"><button class="t-start">START</button><button class="t-reset">RESET</button></div>
+        </div>
+        <div class="card purple">
+          <h4>✅ Checkpoint C4</h4>
+          <p><code>corruption_report.md</code> có bảng 3 cột Baseline – Corrupted – Repaired với số liệu thực tế từ cả RAG metrics lẫn quality signals.</p>
+        </div>
+        <div class="pill warn">⚠️ Repair PHẢI dùng raw backup, không gọi lại Crossref API</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 — CHECKLIST TRƯỚC KHI NỘP -->
+  <section class="slide light">
+    <div class="head">
+      <div>
+        <div class="h1">CHECKLIST TRƯỚC KHI NỘP</div>
+        <div class="sub">Definition of Done — kiểm tra kỹ trước khi push lên GitHub</div>
+      </div>
+    </div>
+    <div style="flex:1;min-height:0;display:flex;gap:2.4vmin;margin-top:2.4vmin;">
+      <div style="flex:1;background:#fff;border:.4vmin solid #a89de0;border-radius:2.4vmin;padding:2.6vmin;">
+        <div style="display:flex;align-items:center;gap:1.4vmin;margin-bottom:1.8vmin;">
+          <span class="who team">Nhóm</span>
+        </div>
+        <div class="li" style="font-size:2.2vmin;margin-bottom:1.4vmin;"><span class="dot">☐</span><span>Baseline pipeline chạy thành công, xuất đủ báo cáo</span></div>
+        <div class="li" style="font-size:2.2vmin;margin-bottom:1.4vmin;"><span class="dot">☐</span><span>Corruption flow chạy thành công, metrics sụt giảm rõ ràng</span></div>
+        <div class="li" style="font-size:2.2vmin;margin-bottom:1.4vmin;"><span class="dot">☐</span><span>Cả 3 trạng thái dùng <b>cùng một bộ test_set.json frozen</b></span></div>
+        <div class="li" style="font-size:2.2vmin;"><span class="dot">☐</span><span><code>group_report.md</code> điền đầy đủ số liệu thực tế</span></div>
+      </div>
+      <div style="flex:1;background:#fff;border:.4vmin solid #7dd4d0;border-radius:2.4vmin;padding:2.6vmin;">
+        <div style="display:flex;align-items:center;gap:1.4vmin;margin-bottom:1.8vmin;">
+          <span class="who solo">Cá nhân</span>
+        </div>
+        <div class="li" style="font-size:2.2vmin;margin-bottom:1.4vmin;"><span class="dot">☐</span><span>File <code>individual_[MSSV].md</code> mô tả đúng module sở hữu và minh chứng code</span></div>
+        <div class="li" style="font-size:2.2vmin;margin-bottom:1.4vmin;"><span class="dot">☐</span><span>Repo sạch: không có file <code>.env</code>, không có API key trong code</span></div>
+        <div class="li" style="font-size:2.2vmin;"><span class="dot">☐</span><span>Link repo GitHub sẵn sàng nộp theo hướng dẫn Lab Coach</span></div>
+      </div>
+      <div style="flex:.8;background:#1a1235;color:#e8e6fb;border-radius:2.4vmin;padding:2.6vmin;">
+        <div style="font-size:1.9vmin;letter-spacing:.28em;text-transform:uppercase;color:#8a80c0;font-weight:700;margin-bottom:1.8vmin;">Rubric nhanh</div>
+        <div class="li" style="font-size:2.1vmin;margin-bottom:1.2vmin;"><span style="color:#7c5fe6;font-weight:900;">☐</span><span>Code structure <b style="color:#a89de0;">(10đ)</b></span></div>
+        <div class="li" style="font-size:2.1vmin;margin-bottom:1.2vmin;"><span style="color:#7c5fe6;font-weight:900;">☐</span><span>Ingestion + Cleaning <b style="color:#a89de0;">(30đ)</b></span></div>
+        <div class="li" style="font-size:2.1vmin;margin-bottom:1.2vmin;"><span style="color:#7c5fe6;font-weight:900;">☐</span><span>Embedding + Agent <b style="color:#a89de0;">(20đ)</b></span></div>
+        <div class="li" style="font-size:2.1vmin;margin-bottom:1.2vmin;"><span style="color:#7c5fe6;font-weight:900;">☐</span><span>Observability <b style="color:#a89de0;">(10đ)</b></span></div>
+        <div class="li" style="font-size:2.1vmin;"><span style="color:#7c5fe6;font-weight:900;">☐</span><span>Corruption & Compare <b style="color:#a89de0;">(10đ)</b></span></div>
+      </div>
+    </div>
+    <div class="pill" style="margin-top:2vmin;">📩 Nộp link repo GitHub theo hướng dẫn của Lab Coach</div>
+  </section>
+
+  <!-- 12 — REFERENCE ERRORS -->
+  <section class="slide light">
+    <div class="head">
+      <span class="badge grey">REF</span>
+      <span class="h1">LỖI THƯỜNG GẶP</span>
+    </div>
+    <div style="flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;gap:1.2vmin;margin-top:1.8vmin;">
+      <div class="step-row">
+        <span class="num-accent">01</span>
+        <div><div style="font-size:2.5vmin;font-weight:800;">ModuleNotFoundError: No module named 'pipelines'</div>
+        <div style="font-size:2vmin;font-weight:600;color:#5a5880;margin-top:.4vmin;">Quên chạy <code style="color:#4a2eb8;font-weight:900;">pip install -e .</code> — chỉ chạy requirements.txt là chưa đủ.</div></div>
+      </div>
+      <div class="step-row">
+        <span class="num-accent">02</span>
+        <div><div style="font-size:2.5vmin;font-weight:800;">GOOGLE_API_KEY is required</div>
+        <div style="font-size:2vmin;font-weight:600;color:#5a5880;margin-top:.4vmin;">File <code>.env</code> chưa có key hoặc không được load. Kiểm tra tên biến và đường dẫn.</div></div>
+      </div>
+      <div class="step-row">
+        <span class="num-accent">03</span>
+        <div><div style="font-size:2.5vmin;font-weight:800;">Điểm metrics không thay đổi sau khi gây lỗi</div>
+        <div style="font-size:2vmin;font-weight:600;color:#5a5880;margin-top:.4vmin;">Corruption nhầm vào tài liệu không nằm trong <code>test_set.json</code>. Kiểm tra overlap với <code>ground_truth_doc_ids</code>.</div></div>
+      </div>
+      <div class="step-row">
+        <span class="num-accent">04</span>
+        <div><div style="font-size:2.5vmin;font-weight:800;">Crossref API trả về 429 / 503 liên tục</div>
+        <div style="font-size:2vmin;font-weight:600;color:#5a5880;margin-top:.4vmin;">Kiểm tra retry/backoff trong <code>crossref.py</code>. Hoặc dùng raw snapshot do Coach cung cấp sẵn.</div></div>
+      </div>
+      <div class="step-row">
+        <span class="num-accent">05</span>
+        <div><div style="font-size:2.5vmin;font-weight:800;">NotImplementedError khi chạy pipeline</div>
+        <div style="font-size:2vmin;font-weight:600;color:#5a5880;margin-top:.4vmin;">Đọc traceback để biết chính xác file + hàm nào chưa được hoàn thiện theo TODO.</div></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<button class="nav p" id="prev" aria-label="Slide trước">‹</button>
+<button class="nav n" id="next" aria-label="Slide sau">›</button>
+<div id="dots"></div>
+
+<script>
+(function () {
+  var track  = document.getElementById('track');
+  var slides = Array.prototype.slice.call(track.children);
+  var N = slides.length, cur = 0;
+
+  track.style.width = (N * 100) + 'vw';
+
+  /* ---------- điều hướng ---------- */
+  var dotsWrap = document.getElementById('dots');
+  var dotEls = [];
+  for (var i = 0; i < N; i++) {
+    (function (n) {
+      var b = document.createElement('button');
+      b.setAttribute('aria-label', 'Slide ' + (n + 1));
+      b.onclick = function () { go(n); };
+      dotsWrap.appendChild(b); dotEls.push(b);
+    })(i);
+  }
+
+  function go(n) {
+    cur = Math.max(0, Math.min(N - 1, n));
+    track.style.transform = 'translateX(-' + (cur * 100) + 'vw)';
+    for (var i = 0; i < N; i++) dotEls[i].className = (i === cur ? 'on' : '');
+    var dark = slides[cur].classList.contains('dark');
+    dotEls.forEach(function (d, i) {
+      if (i !== cur) d.style.background = dark ? 'rgba(255,255,255,.4)' : 'rgba(10,8,40,.2)';
+      else d.style.background = '#7c5fe6';
+    });
+  }
+
+  document.getElementById('prev').onclick = function () { go(cur - 1); };
+  document.getElementById('next').onclick = function () { go(cur + 1); };
+  window.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); go(cur + 1); }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); go(cur - 1); }
+    else if (e.key === 'Home') { e.preventDefault(); go(0); }
+    else if (e.key === 'End') { e.preventDefault(); go(N - 1); }
+  });
+
+  /* ---------- chuông báo hết giờ ---------- */
+  var ac = null;
+  function arm() {
+    try {
+      var C = window.AudioContext || window.webkitAudioContext;
+      ac = ac || new C();
+      if (ac.state === 'suspended') ac.resume();
+    } catch (e) {}
+  }
+  function chime() {
+    try {
+      if (!ac) return;
+      [0, 0.55, 1.1].forEach(function (t, i) {
+        var o = ac.createOscillator(), g = ac.createGain();
+        o.type = 'sine'; o.frequency.value = (i === 2 ? 660 : 880);
+        o.connect(g); g.connect(ac.destination);
+        var st = ac.currentTime + t;
+        g.gain.setValueAtTime(0.0001, st);
+        g.gain.exponentialRampToValueAtTime(0.5, st + 0.03);
+        g.gain.exponentialRampToValueAtTime(0.0001, st + 0.45);
+        o.start(st); o.stop(st + 0.5);
+      });
+    } catch (e) {}
+  }
+
+  /* ---------- timers: mỗi cái chạy độc lập ---------- */
+  function fmt(s) {
+    var m = Math.floor(s / 60), x = s % 60;
+    return String(m).padStart(2, '0') + ':' + String(x).padStart(2, '0');
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.timer'), function (box) {
+    var total = parseInt(box.getAttribute('data-secs'), 10);
+    var left = total, running = false;
+    var num = box.querySelector('.t-num');
+    var bStart = box.querySelector('.t-start');
+    var bReset = box.querySelector('.t-reset');
+
+    function paint() {
+      num.textContent = fmt(left);
+      num.className = 't-num' + (left <= 300 ? ' warn' : '');
+      bStart.textContent = running ? 'PAUSE' : 'START';
+    }
+    bStart.onclick = function () { arm(); running = !running; paint(); };
+    bReset.onclick = function () { running = false; left = total; paint(); };
+
+    setInterval(function () {
+      if (running && left > 0) {
+        left--;
+        if (left === 0) { running = false; chime(); }
+        paint();
+      }
+    }, 1000);
+
+    paint();
+  });
+
+  go(0);
+})();
+</script>
+</body>
+</html>
