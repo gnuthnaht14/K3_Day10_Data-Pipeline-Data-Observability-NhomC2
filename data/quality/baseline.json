@@ -1,0 +1,96 @@
+{
+  "report_name": "baseline",
+  "generated_at": "2026-08-06T04:26:21.030965+00:00",
+  "status": "pass",
+  "passed": true,
+  "total_rows": 24,
+  "checks": [
+    {
+      "name": "row_count",
+      "value": 24,
+      "threshold": {
+        "min": 1
+      },
+      "passed": true
+    },
+    {
+      "name": "required_schema",
+      "value": [],
+      "threshold": {
+        "required_columns": [
+          "paper_id",
+          "title",
+          "summary",
+          "published",
+          "authors_joined",
+          "categories_joined",
+          "age_days",
+          "text_for_embedding",
+          "abs_url",
+          "pdf_url"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "name": "paper_id_not_null",
+      "value": 0,
+      "threshold": 0,
+      "passed": true
+    },
+    {
+      "name": "paper_id_unique",
+      "value": 0,
+      "threshold": 0,
+      "passed": true
+    },
+    {
+      "name": "duplicate_rows",
+      "value": 0,
+      "threshold": 0,
+      "passed": true
+    },
+    {
+      "name": "title_not_empty",
+      "value": 0,
+      "threshold": 0,
+      "passed": true
+    },
+    {
+      "name": "summary_min_length",
+      "value": 0,
+      "threshold": {
+        "min_chars": 20,
+        "max_rows_below_threshold": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "text_for_embedding_not_empty",
+      "value": 0,
+      "threshold": 0,
+      "passed": true
+    },
+    {
+      "name": "age_days_valid",
+      "value": 0,
+      "threshold": 0,
+      "passed": true
+    },
+    {
+      "name": "stale_rows",
+      "value": 0,
+      "threshold": {
+        "max_age_days": 180,
+        "max_rows": 0
+      },
+      "passed": true
+    }
+  ],
+  "summary": {
+    "total_checks": 10,
+    "passed_checks": 10,
+    "failed_checks": 0,
+    "failed_check_names": []
+  }
+}

@@ -86,8 +86,8 @@ def load_settings(project_dir: Path | None = None) -> Settings:
         clean_json=data_dir / "clean" / "papers_clean.json",
         chroma_dir=data_dir / "chroma",
         embeddings_json=data_dir / "embeddings" / "papers_embeddings.json",
-        corrupted_clean_csv=data_dir / "clean" / "papers_clean_corrupted.csv",
-        corrupted_clean_json=data_dir / "clean" / "papers_clean_corrupted.json",
+        corrupted_clean_csv=data_dir / "clean" / "papers_corrupted.csv",
+        corrupted_clean_json=data_dir / "clean" / "papers_corrupted.json",
         corrupted_embeddings_json=data_dir / "embeddings" / "papers_embeddings_corrupted.json",
         repaired_clean_csv=data_dir / "clean" / "papers_clean_repaired.csv",
         repaired_clean_json=data_dir / "clean" / "papers_clean_repaired.json",
@@ -109,8 +109,8 @@ def load_settings(project_dir: Path | None = None) -> Settings:
     )
 
     return Settings(
-        llm_provider=os.getenv("LLM_PROVIDER", "gemini"),
-        model_name=os.getenv("LLM_MODEL", "gemini-2.5-flash"),
+        llm_provider=os.getenv("LLM_PROVIDER", "openai"),
+        model_name=os.getenv("LLM_MODEL", "gpt-4o-mini"),
         google_api_key=os.getenv("GOOGLE_API_KEY"),
         openai_api_key=os.getenv("OPENAI_API_KEY"),
         anthropic_api_key=os.getenv("ANTHROPIC_API_KEY"),

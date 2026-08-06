@@ -1,0 +1,102 @@
+{
+  "generated_at": "2026-08-06T04:26:57.683142+00:00",
+  "seed": 42,
+  "test_set_sha256": "5899992d6c85c56c3913fa9bc316bcef4d1ae409b350ce337ca484ead2e81ed5",
+  "input_rows": 24,
+  "output_rows": 24,
+  "overlap_with_eval": true,
+  "affected_eval_doc_ids": [
+    "10.1007/s10278-026-02086-9",
+    "10.1093/sleep/zsag091.0346",
+    "10.1111/exsy.70341"
+  ],
+  "operations": [
+    {
+      "type": "drop_eval_record",
+      "record_ids": [
+        "10.1111/exsy.70341"
+      ],
+      "affected_count": 1,
+      "affected_eval_doc_ids": [
+        "10.1111/exsy.70341"
+      ],
+      "overlap_with_eval": true,
+      "parameters": {
+        "count": 1,
+        "seed": 42
+      }
+    },
+    {
+      "type": "blank_summary",
+      "record_ids": [
+        "10.1007/s10278-026-02086-9"
+      ],
+      "affected_count": 1,
+      "affected_eval_doc_ids": [
+        "10.1007/s10278-026-02086-9"
+      ],
+      "overlap_with_eval": true,
+      "parameters": {
+        "replacement": "",
+        "seed": 42
+      }
+    },
+    {
+      "type": "inject_embedding_noise",
+      "record_ids": [
+        "10.1093/sleep/zsag091.0346"
+      ],
+      "affected_count": 1,
+      "affected_eval_doc_ids": [
+        "10.1093/sleep/zsag091.0346"
+      ],
+      "overlap_with_eval": true,
+      "parameters": {
+        "marker": "[CORRUPTION_NOISE_SEED_42]",
+        "target_column": "text_for_embedding",
+        "seed": 42
+      }
+    },
+    {
+      "type": "make_published_date_stale",
+      "record_ids": [
+        "10.1007/s10278-026-02086-9"
+      ],
+      "affected_count": 1,
+      "affected_eval_doc_ids": [
+        "10.1007/s10278-026-02086-9"
+      ],
+      "overlap_with_eval": true,
+      "parameters": {
+        "replacement_date": "2000-01-01",
+        "seed": 42
+      }
+    },
+    {
+      "type": "add_duplicate_rows",
+      "record_ids": [
+        "10.1093/sleep/zsag091.0346"
+      ],
+      "affected_count": 1,
+      "affected_eval_doc_ids": [
+        "10.1093/sleep/zsag091.0346"
+      ],
+      "overlap_with_eval": true,
+      "parameters": {
+        "count": 1,
+        "seed": 42
+      }
+    }
+  ],
+  "summary": {
+    "operations_count": 5,
+    "scenarios": [
+      "drop_eval_record",
+      "blank_summary",
+      "inject_embedding_noise",
+      "make_published_date_stale",
+      "add_duplicate_rows"
+    ],
+    "rows_delta": 0
+  }
+}

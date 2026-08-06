@@ -23,6 +23,7 @@ def build_llm(settings: Settings, temperature: float = 0.0):
             model=settings.model_name,
             api_key=settings.openai_api_key,
             temperature=temperature,
+            seed=42,
         )
     if provider == "anthropic":
         return ChatAnthropic(

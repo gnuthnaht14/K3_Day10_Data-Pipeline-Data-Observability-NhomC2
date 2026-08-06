@@ -1,0 +1,28 @@
+{
+  "samples": 12,
+  "retrieval_hit_rate": 1.0,
+  "exact_lookup_hit_rate": 1.0,
+  "mean_token_f1": 0.21452908193582848,
+  "judge_accuracy": 0.5,
+  "mean_judge_score": 3,
+  "judge_provenance": {
+    "provider": "openai",
+    "model": "gpt-4o-mini",
+    "modes": {
+      "llm_judge": 3,
+      "deterministic_authors": 3,
+      "deterministic_date": 3,
+      "deterministic_categories": 3
+    },
+    "fallback_samples": 0
+  },
+  "answerer_provenance": {
+    "modes": {
+      "langchain_tool_agent": 12
+    },
+    "fallback_samples": 0
+  },
+  "ragas": {
+    "skipped": "Set RUN_RAGAS=1 to enable the slower Ragas pass."
+  }
+}
