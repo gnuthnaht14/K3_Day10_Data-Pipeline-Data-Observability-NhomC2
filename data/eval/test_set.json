@@ -1,0 +1,92 @@
+[
+  {
+    "id": "q1",
+    "question_type": "factual",
+    "question": "Tiêu đề của bài báo có paper_id 10.20944/preprints202602.0996.v1 là gì?",
+    "ground_truth": "Clinical Large Language Models with Multi-Stage Instruction Tuning and Advanced Retrieval-Augmented Generation",
+    "ground_truth_doc_ids": [
+      "10.20944/preprints202602.0996.v1"
+    ]
+  },
+  {
+    "id": "q2",
+    "question_type": "authors",
+    "question": "Ai là tác giả của bài báo 'Clinical Large Language Models with Multi-Stage Instruction Tuning and Advanced Retrieval-Augmented Generation'?",
+    "ground_truth": "Donald Martin, Blake Bowman",
+    "ground_truth_doc_ids": [
+      "10.20944/preprints202602.0996.v1"
+    ]
+  },
+  {
+    "id": "q3",
+    "question_type": "factual",
+    "question": "Tiêu đề của bài báo có paper_id 10.3390/app16052244 là gì?",
+    "ground_truth": "Hybrid Retrieval-Augmented Generation: Semantic and Structural Integration for Large Language Model Reasoning",
+    "ground_truth_doc_ids": [
+      "10.3390/app16052244"
+    ]
+  },
+  {
+    "id": "q4",
+    "question_type": "date",
+    "question": "Bài báo 'Hybrid Retrieval-Augmented Generation: Semantic and Structural Integration for Large Language Model Reasoning' được xuất bản vào ngày nào?",
+    "ground_truth": "2026-02-26",
+    "ground_truth_doc_ids": [
+      "10.3390/app16052244"
+    ]
+  },
+  {
+    "id": "q5",
+    "question_type": "factual",
+    "question": "Tiêu đề của bài báo có paper_id 10.35314/3y9hy151 là gì?",
+    "ground_truth": "Implementation of Retrieval-Augmented Generation Method on Large Language Model for Development of Campus Service and Information Chatbot",
+    "ground_truth_doc_ids": [
+      "10.35314/3y9hy151"
+    ]
+  },
+  {
+    "id": "q6",
+    "question_type": "authors",
+    "question": "Ai là tác giả của bài báo 'Implementation of Retrieval-Augmented Generation Method on Large Language Model for Development of Campus Service and Information Chatbot'?",
+    "ground_truth": "Muhammad Dzaki Salman, Rahmaddeni, Torkis Nasution, Susanti",
+    "ground_truth_doc_ids": [
+      "10.35314/3y9hy151"
+    ]
+  },
+  {
+    "id": "q7",
+    "question_type": "factual",
+    "question": "Tiêu đề của bài báo có paper_id 10.36227/techrxiv.177272838.89432844/v1 là gì?",
+    "ground_truth": "A Survey of (Deep RAG) Deep Retrieval Augmented Generation and Reasoning in Large Language Models",
+    "ground_truth_doc_ids": [
+      "10.36227/techrxiv.177272838.89432844/v1"
+    ]
+  },
+  {
+    "id": "q8",
+    "question_type": "date",
+    "question": "Bài báo 'A Survey of (Deep RAG) Deep Retrieval Augmented Generation and Reasoning in Large Language Models' được xuất bản vào ngày nào?",
+    "ground_truth": "2026-03-05",
+    "ground_truth_doc_ids": [
+      "10.36227/techrxiv.177272838.89432844/v1"
+    ]
+  },
+  {
+    "id": "q9",
+    "question_type": "factual",
+    "question": "Tiêu đề của bài báo có paper_id 10.70121/001c.158711 là gì?",
+    "ground_truth": "The Role of Retrieval-Augmented Generation in Improving Factual Accuracy for Medical Large Language Models",
+    "ground_truth_doc_ids": [
+      "10.70121/001c.158711"
+    ]
+  },
+  {
+    "id": "q10",
+    "question_type": "authors",
+    "question": "Ai là tác giả của bài báo 'The Role of Retrieval-Augmented Generation in Improving Factual Accuracy for Medical Large Language Models'?",
+    "ground_truth": "Eason Ni",
+    "ground_truth_doc_ids": [
+      "10.70121/001c.158711"
+    ]
+  }
+]
