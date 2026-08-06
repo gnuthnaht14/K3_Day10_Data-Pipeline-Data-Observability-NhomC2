@@ -198,6 +198,17 @@ Nếu dùng pip:
 python script/run_corruption_flow.py
 ```
 
+### Dashboard demo tương tác
+
+Sau khi đã có baseline và corruption artifacts, chạy:
+
+```bash
+uv run streamlit run streamlit_app.py
+```
+
+Dashboard đọc artifact hiện có để trình bày luồng xử lý baseline, so sánh
+Baseline–Corrupted–Repaired, quality/freshness checks và phương án repair.
+
 ## 6. Kiểm tra kết quả
 
 Sau baseline, tối thiểu cần kiểm tra:
