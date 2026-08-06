@@ -15,11 +15,10 @@
 
 | STT | Họ và tên | MSSV | Vai trò chính | Module/deliverable sở hữu |
 | --: | --- | --- | --- | --- |
-| 1 | [Họ tên] | [MSSV] | [Vai trò] | [File, hàm hoặc artifact] |
-| 2 | [Họ tên] | [MSSV] | [Vai trò] | [File, hàm hoặc artifact] |
-| 3 | [Họ tên] | [MSSV] | [Vai trò] | [File, hàm hoặc artifact] |
-| 4 | [Nếu có] | [MSSV] | [Vai trò] | [File, hàm hoặc artifact] |
-| 5 | [Nếu có] | [MSSV] | [Vai trò] | [File, hàm hoặc artifact] |
+| 1 | Lường Thị Hảo | [MSSV] | Source Ingestion Owner | `src/ingestion/crossref.py`; Raw Schema/PaperRecord |
+| 2 | Lê Thị Linh | [MSSV] | Data Model & Eval Set Owner | `src/ingestion/cleaning.py`, `src/evaluation/testset.py`; Clean Schema và Evaluation Set |
+| 3 | Mai Hồng Sơn | [MSSV] | Data Observability Owner | `src/observability/quality.py`, `src/observability/reporting.py`; quality/freshness reports |
+| 4 | Nhữ Trọng Thành | [MSSV] | Corruption & Integration Owner | `src/ingestion/corruption.py`, `src/pipelines/phase1.py`, `src/pipelines/corruption_flow.py` |
 
 ## 2. Tóm tắt kết quả
 
